@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="row">
+  <div class="col-md-3 mt-5">
+    <h3 class="bg-secondary text-white p-2">Sort By Price</h3>
+
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="/sort/0">
+          <h5>Low To High</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/sort/1">
+          <h5>High to Low</h5>
+        </a>
+      </li>
+
+    </ul><!--Sort filter end-->
+
+    <h3 class="bg-secondary text-white p-2">Filters</h3>
+    <h6> By Categories</h6>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="/catfilter/1">
+          <h5>Mobile</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/catfilter/2">
+          <h5>shoes</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/catfilter/3">
+          <h5>clothes</h5>
+        </a>
+      </li>
+    </ul> <!--cat filter end-->
+
+
+    <h6> By Price</h6>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="/pricefilter/0">
+          <h5>
+            < Rs.5000</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/pricefilter/1">
+          <h5> >= Rs.5000</h5>
+        </a>
+      </li>
+
+    </ul> <!--price filter end-->
+
+    <h6> By Price Range</h6>
+    <form action="/pricerange">
+      <div class="mb-3">
+        <label for="one" class="form-label">Min</label>
+        <input type="number" class="form-control" name="min" id="one" placeholder="Min.Value">
+      </div>
+
+      <div class="mb-3">
+        <label for="two" class="form-label">Max</label>
+        <input type="number" class="form-control" name="max" id="two" placeholder="Max.Value">
+      </div>
+
+      <button type="submit" class="btn btn-success">Apply</button>
+
+    </form>
+
+
+  </div>
+
+  <div class="col-md-9">
+    <div class="row mt-4">
+      {% for x in products %}
+
+      <div class="col-md-3 mt-4">
+
+        <div class="card" style="width: 100%;">
+          <img src="{{x.pimage.url}}" width="100%" alt="phone">
+          <div class="card-body">
+
+            <h5 class="card-title">{{x.name}}</h5>
+
+            {% if x.cat == 1 %}
+            <p class="card-text">Mobiles</p>
+
+            {% elif x.cat == 2 %}
+            <p class="card-text">shoes</p>
+
+            {% elif x.cat == 3 %}
+            <p class="card-text">clothes</p>
+            {% endif %}
+
+            <p>Rs.{{x.price}}</p>
+            <a href="/pdetails/{{x.id}}" class="btn btn-primary">See Details</a>
+
+          </div>
+
+        </div><!--card End-->
+      </div><!--product 1 end-->
+      {% endfor %}
+
+
+    </div><!--product list end-->
+  </div>
+</div>
+
+{% endblock 'main' %}

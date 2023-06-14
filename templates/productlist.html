@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+</head>
+
+<body>
+
+    <h2>Product</h2>
+
+    <p>{{name}}</p>
+
+
+    {% startcomment %}
+
+    {% if x > y %}
+    <p>in if block</p>
+    <h4>{{x}} is greter</h4>
+    {% else %}
+    <p>in if block</p>
+    <h4>{{y}} is greter</h4>
+    {% endif %}
+
+    <hr>
+    {{data}}
+    <br>
+    {% for x in data %}
+    <p>{{x}}</p>
+
+    {% endfor %}
+
+    {% endcomment %}
+
+    <table>
+        <tr>
+            {% for x in plist %}
+                 <td>
+                     {{x.name}}<br>
+                     {{x.pimage}} <br>
+                     {{x.price}} <br>
+                 </td>
+            {% endfor %}
+        </tr>
+    </table>
+
+
+</body>
+
+</html>
